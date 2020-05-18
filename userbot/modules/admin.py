@@ -143,7 +143,7 @@ async def promote(promt):
         await promt.client(
             EditAdminRequest(promt.chat_id, user.id, new_rights, rank))
         await promt.edit("`Promoted Successfully!`")
-        await sleep(3)
+        await sleep(5)
         await promt.delete()
 
     # If Telethon spit BadRequestError, assume
@@ -231,7 +231,7 @@ async def ban(bon):
         return
 
     # Announce that we're going to whack the pest
-    await bon.edit("`Whacking the pest!`")
+    await bon.edit("`User has been banned!`")
     await sleep(3)
     await bon.delete()
 
@@ -342,7 +342,10 @@ async def spider(spdr):
     # If everything goes well, do announcing and mute
     await spdr.edit("`Gets a tape!`")
     if mute(spdr.chat_id, user.id) is False:
-        return await spdr.edit('`Error! User probably already muted.`')
+        await spdr.edit('`Error! User probably already muted.`')
+        await sleep(2)
+        await spdr.delete()
+        return
     else:
         try:
             await spdr.client(
@@ -395,7 +398,10 @@ async def unmoot(unmot):
         return
 
     if unmute(unmot.chat_id, user.id) is False:
-        return await unmot.edit("`Error! User probably already unmuted.`")
+        await unmot.edit("`Error! User probably already unmuted.`")
+        await sleep(5)
+        await unmot.delete()
+        return
     else:
 
         try:
@@ -481,6 +487,8 @@ async def ungmoot(un_gmute):
     else:
         # Inform about success
         await un_gmute.edit("```Ungmuted Successfully```")
+        await sleep(5)
+        await un_gmute.delete()
 
         if BOTLOG:
             await un_gmute.client.send_message(
@@ -564,7 +572,7 @@ async def rm_deletedacc(show):
         await show.edit("`I am not an admin here!`")
         return
 
-    await show.edit("`Deleting deleted accounts...\nOh I can do that?!?!`")
+    await show.edit("`Deleting deleted accounts...\nOh can I do that?!?!`")
     del_u = 0
     del_a = 0
 
@@ -575,6 +583,8 @@ async def rm_deletedacc(show):
                     EditBannedRequest(show.chat_id, user.id, BANNED_RIGHTS))
             except ChatAdminRequiredError:
                 await show.edit("`I don't have ban rights in this group`")
+                await sleep(5)
+                await show.delete()
                 return
             except UserAdminInvalidError:
                 del_u -= 1
@@ -593,7 +603,7 @@ async def rm_deletedacc(show):
 
 
     await show.edit(del_status)
-    await sleep(2)
+    await sleep(3)
     await show.delete()
 
 
@@ -685,6 +695,8 @@ async def pin(msg):
 
     if not to_pin:
         await msg.edit("`Reply to a message to pin it.`")
+        await sleep(3)
+        await msg.delete()
         return
 
     options = msg.pattern_match.group(1)
@@ -785,17 +797,28 @@ async def get_users(show):
     try:
         await show.edit(mentions)
     except MessageTooLongError:
-        await show.edit(
-            "Damn, this is a huge group. Uploading users lists as file.")
         file = open("userslist.txt", "w+")
         file.write(mentions)
         file.close()
-        await show.client.send_file(
-            show.chat_id,
-            "userslist.txt",
-            caption='Users in {}'.format(title),
-            reply_to=show.id,
-        )
+        if BOTLOG:
+            await show.edit(
+                "Uploading user lists as file in botlog.")
+            await sleep(3)
+            await show.delete()
+            await show.client.send_message(
+                BOTLOG_CHATID,
+                "userslist.txt",
+                caption='Users in {}'.format(title),
+            )
+        else:
+            await show.edit(
+                "Uploading user lists ad file.")
+            await show.client.send_file(
+                show.chat_id,
+                "userslist.txt",
+                caption='Users in {}'.format(title),
+                reply_to=show.id,
+            )
         remove("userslist.txt")
 
 
@@ -876,7 +899,7 @@ async def get_usersdel(show):
         await show.edit(mentions)
     except MessageTooLongError:
         await show.edit(
-            "Damn, this is a huge group. Uploading deletedusers lists as file.")
+            "Uploading deletedusers lists as file.")
         file = open("userslist.txt", "w+")
         file.write(mentions)
         file.close()
