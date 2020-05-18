@@ -5,6 +5,8 @@
 #
 """ Userbot module for keeping control who PM you. """
 
+import asyncio
+
 from telethon.tl.functions.contacts import BlockRequest, UnblockRequest
 from telethon.tl.functions.messages import ReportSpamRequest
 from telethon.tl.types import User
@@ -17,11 +19,10 @@ from userbot.events import register
 
 # ========================= CONSTANTS ============================
 UNAPPROVED_MSG = (
-    "`Hey! Sorry, I haven't approved you to PM yet.`\n"
-    "`Please wait for me to look in`\n"
-    "`Until then, please don't spam my PM..`\n"
+    "`Hey! Sorry, please wait for me to look in`\n"
+    "**Until then, please don't spam my PM...**\n"
     "`Thank you for being patient.`\n\n"
-    "`*This is an automated message`")
+    "***This is an automated message**")
 # =================================================================
 
 
@@ -71,7 +72,7 @@ async def permitpm(event):
                 if COUNT_PM[event.chat_id] > 4:
                     await event.respond(
                         "`I didn't like you spamming my PM.`\n"
-                        "`You have been BLOCKED and reported as SPAM, wait a minute until i online.`"
+                        "I will not approve your pm!"
                     )
 
                     try:
@@ -221,12 +222,14 @@ async def disapprovepm(disapprvpm):
 
     await disapprvpm.edit(
         f"[{name0}](tg://user?id={disapprvpm.chat_id}) `Disaproved to PM!`")
+    await asyncio.sleep(5)
+    await disapprvpm.delete()
 
     if BOTLOG:
         await disapprvpm.client.send_message(
             BOTLOG_CHATID,
             f"[{name0}](tg://user?id={disapprvpm.chat_id})"
-            " was disapproved to PM you.",
+            " was disapproved to PM.",
         )
 
 
@@ -240,11 +243,15 @@ async def blockpm(block):
         name0 = str(replied_user.first_name)
         await block.client(BlockRequest(replied_user.id))
         await block.edit("`You has been blocked!`")
+        await asyncio.sleep(3)
+        await block.delete()
         uid = replied_user.id
     else:
         await block.client(BlockRequest(block.chat_id))
         aname = await block.client.get_entity(block.chat_id)
         await block.edit("`You has been blocked!`")
+        await asyncio.sleep(3)
+        await block.delete()
         name0 = str(aname.first_name)
         uid = block.chat_id
 
@@ -275,7 +282,7 @@ async def unblockpm(unblock):
         await unblock.client.send_message(
             BOTLOG_CHATID,
             f"[{name0}](tg://user?id={replied_user.id})"
-            " was unblocc'd!.",
+            " was unblocked!.",
         )
 
 
