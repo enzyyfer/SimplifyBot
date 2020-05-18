@@ -5,18 +5,27 @@
 #
 # made by @DneZyeK
 # Port to UserBot by @MoveAngel
+# Customized by @rzlamrr
 
 import asyncio
+import random
 import re
 import time
 from time import sleep
 from userbot import CMD_HELP, ZALG_LIST
 from userbot.events import register
 
+TYPU_TXT = [
+    "Abort! Bot lagi mager njir.",
+    "Failed! Tim telegram sedang berada dalam panggilan.",
+    "Sed:( Laporan dialihkan...",
+    "Error! Telegram is not reponding...",
+]
+
 @register(outgoing=True, pattern="^.fl(?: |$)(.*)")
 async def typewriter(typew):
 	message = typew.pattern_match.group(1)
-	await typew.edit("`start loading makan tokek goreng!...`")
+	await typew.edit("Starting Telegram report protocol...`")
 	sleep(4)
 	await typew.edit("0%")
 	number = 1
@@ -319,7 +328,9 @@ async def typewriter(typew):
 	sleep(0.03)
 	await typew.edit(str(number) + "%   ████████████████▌")
 	sleep(1)
-	await typew.edit("Tokek Goreng Siap di Santap! Jangan lupa Menu penutup nya [DISINI](http://javbus.com)")
+	await typew.edit("Running Telegram protocol...")
+	sleep(1)
+	await args.edit(f"{random.choice(TYPU_TXT)}")
 	# I did it for two hours :D just ctrl+c - crtl+v
 
 CMD_HELP.update({
