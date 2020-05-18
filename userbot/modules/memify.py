@@ -59,7 +59,7 @@ async def mim(event):
        await event.edit("```Reply to actual users message.```")
        return
     else:
-     await event.edit("```Transfiguration Time! Mwahaha Memifying this image! (」ﾟﾛﾟ)｣ ```")
+     await event.edit("```Processing...```")
      await asyncio.sleep(5)
     
     async with bot.conversation("@MemeAutobot") as bot_conv:
@@ -74,9 +74,9 @@ async def mim(event):
               await event.reply("```Please unblock @MemeAutobot and try again```")
               return
           if response.text.startswith("Forward"):
-              await event.edit("```can you kindly disable your forward privacy settings for good, Nibba?```")
+              await event.edit("```Failed due to privacy```")
           if "Okay..." in response.text:
-            await event.edit("```🛑 🤨 NANI?! This is not an image! This will take sum tym to convert to image... UwU 🧐 🛑```")
+            await event.edit("```This is not image.```")
             thumb = None
             if os.path.exists(THUMB_IMAGE_PATH):
                 thumb = THUMB_IMAGE_PATH
@@ -122,7 +122,7 @@ async def mim(event):
             await event.delete()
             #await bot.send_message(event.chat_id, "`☠️☠️Ah Shit... Here we go Again!🔥🔥`")
           elif not is_message_image(reply_message):
-            await event.edit("Invalid message type. Plz choose right message type u NIBBA.")
+            await event.edit("Invalid message type.")
             return
           else: 
                await bot.send_file(event.chat_id, response.media)
