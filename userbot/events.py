@@ -98,7 +98,7 @@ def register(**args):
 
                     text = "**USERBOT ERROR REPORT**\n"
                     link = "[Userbot Indo Support](https://t.me/userbotindo)"
-                    text += "If you want to, you can report it"
+                    text += "If you want, you can report it"
                     text += f". Head and forward this message to {link}.\n"
                     text += "Nothing is logged except the fact of error and date\n"
 
@@ -140,7 +140,7 @@ def register(**args):
 
                     if LOGSPAMMER:
                         await check.client.respond(
-                            "`Sorry, my userbot has crashed.\
+                            "`Sorry, Assistant has crashed.\
                         \nThe error logs are stored in the userbot's log chat.`"
                         )
 
