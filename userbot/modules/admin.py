@@ -608,7 +608,7 @@ async def rm_deletedacc(show):
 
 
     if BOTLOG:
-        await show.client.send_message(
+        await show.client.send_file(
             BOTLOG_CHATID, "#CLEANUP\n"
             f"Cleaned **{del_u}** deleted account(s) !!\
             \nCHAT: {show.chat.title}(`{show.chat_id}`)")
@@ -774,6 +774,7 @@ async def kick(usr):
 @register(outgoing=True, pattern="^.users ?(.*)")
 async def get_users(show):
     """ For .users command, list all of the users in a chat. """
+    chat = await show.get_chat()
     info = await show.client.get_entity(show.chat_id)
     title = info.title if info.title else "this chat"
     mentions = '**Users in {} Group**: \n'.format(title)
@@ -805,10 +806,10 @@ async def get_users(show):
                 "Uploading user lists as file in botlog.")
             await sleep(3)
             await show.delete()
-            await show.client.send_message(
+            await show.client.send_file(
                 BOTLOG_CHATID,
                 "userslist.txt",
-                caption='Users in {}'.format(title),
+                caption= f"Users in {show.chat.title}(`{show.chat_id}`)"),
             )
         else:
             await show.edit(
