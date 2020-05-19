@@ -25,7 +25,7 @@ TYPU_TXT = [
 @register(outgoing=True, pattern="^.fl(?: |$)(.*)")
 async def typewriter(typew):
 	message = typew.pattern_match.group(1)
-	await typew.edit("Starting Telegram report protocol...`")
+	await typew.edit("sStarting Telegram report protocol...`")
 	sleep(4)
 	await typew.edit("0%")
 	number = 1
@@ -328,9 +328,9 @@ async def typewriter(typew):
 	sleep(0.03)
 	await typew.edit(str(number) + "%   ████████████████▌")
 	sleep(1)
-	await typew.edit("Running Telegram protocol...")
+	await typew.edit("`Running Telegram protocol...`")
 	sleep(1)
-	await args.edit(f"{random.choice(TYPU_TXT)}")
+	await typew.edit(f"{random.choice(TYPU_TXT)}")
 	# I did it for two hours :D just ctrl+c - crtl+v
 
 CMD_HELP.update({
