@@ -13,7 +13,7 @@ from telethon.tl.types import MessageEntityMentionName
 from telethon.utils import get_input_location
 from telethon import events
 from telethon.tl import functions, types
-from userbot import NC_LOG_P_M_S, PM_LOGGR_BOT_API_ID, CMD_HELP, bot, TEMP_DOWNLOAD_DIRECTORY
+from userbot import LOG_PM, BOTLOG_CHATID, CMD_HELP, bot, TEMP_DOWNLOAD_DIRECTORY
 from userbot.events import register
 
 
@@ -27,7 +27,7 @@ async def monito_p_m_s(event):
         chat = await event.get_chat()
         if chat.id not in NO_PM_LOG_USERS and chat.id:
             try:
-                e = await event.client.get_entity(int(PM_LOGGR_BOT_API_ID))
+                e = await event.client.get_entity(int(BOTLOG_CHATID))
                 fwd_message = await event.client.forward_messages(
                     e,
                     event.message,
@@ -43,7 +43,7 @@ async def approve_p_m(event):
         return
     reason = event.pattern_match.group(1)
     chat = await event.get_chat()
-    if NC_LOG_P_M_S:
+    if LOG_PM:
         if event.is_private:
             if chat.id not in NO_PM_LOG_USERS:
                 NO_PM_LOG_USERS.append(chat.id)
@@ -58,7 +58,7 @@ async def approve_p_m(event):
         return
     reason = event.pattern_match.group(1)
     chat = await event.get_chat()
-    if NC_LOG_P_M_S:
+    if LOG_PM:
         if event.is_private:
             if chat.id in NO_PM_LOG_USERS:
                 NO_PM_LOG_USERS.remove(chat.id)

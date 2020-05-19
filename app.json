@@ -26,6 +26,11 @@
       "description": "Get this value by running [python3 string_session.py] in Termux or local system.",
       "required": true
     },
+    "LOG_PM": {
+      "description": "Set to True if you want to log pm.",
+      "value": "False",
+      "required": true
+    },
     "HEROKU_MEMEZ": {
       "description": "This should be True if the userbot is running on a Heroku Dyno.",
       "value": "True",
