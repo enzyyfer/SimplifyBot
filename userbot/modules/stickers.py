@@ -5,6 +5,7 @@
 #
 """ Userbot module for kanging stickers or making new ones. Thanks @rupansh"""
 
+import asyncio
 import io
 import math
 import urllib.request
@@ -19,20 +20,17 @@ from telethon.tl.types import InputStickerSetID
 from telethon.tl.types import DocumentAttributeSticker
 
 KANGING_STR = [
-    "Using Witchery to kang this sticker...",
-    "Plagiarising hehe...",
-    "Inviting this sticker over to my pack...",
-    "Kanging this sticker...",
-    "Hey that's a nice sticker!\nMind if I kang?!..",
-    "hehe me stel ur stikér\nhehe.",
-    "Ay look over there (☉｡☉)!→\nWhile I kang this...",
-    "Roses are red violets are blue, kanging this sticker so my pacc looks cool",
-    "Imprisoning this sticker...",
-    "Mr.Steal Your Sticker is stealing this sticker... ",
+    "Build starting...",
+    "Processing...",
+    "Transfering via atm...",
+    "Overclocking..",
+    "Underclocking..",
+    "Build started under commit: **Merge branch into new pack**",
+    "Build started under commit: **Rewrite to improve performance**",
 ]
 
 
-@register(outgoing=True, pattern="^.kang")
+@register(outgoing=True, pattern="^.kang|curi|cury|colong|ambil")
 async def kang(args):
     """ For .kang command, kangs stickers or creates new ones. """
     user = await bot.get_me()
@@ -71,10 +69,10 @@ async def kang(args):
             is_anim = True
             photo = 1
         else:
-            await args.edit("`Unsupported File!`")
+            await args.edit("Nginx, invalid file")
             return
     else:
-        await args.edit("`I can't kang that...`")
+        await args.edit("Build failed..")
         return
 
     if photo:
@@ -95,8 +93,8 @@ async def kang(args):
                 # pack
                 emoji = splat[1]
 
-        packname = f"a{user.id}_by_{user.username}_{pack}"
-        packnick = f"@{user.username}'s kang pack Vol.{pack}"
+        packname = f"a{user.id}_{user.username}_{pack}"
+        packnick = f"{user.first_name} Pt.{pack}"
         cmd = '/newpack'
         file = io.BytesIO()
 
@@ -105,8 +103,8 @@ async def kang(args):
             file.name = "sticker.png"
             image.save(file, "PNG")
         else:
-            packname += "_anim"
-            packnick += " (Animated)"
+            packname = f"a{user.id}_by_{user.username}_anim{pack}"
+            packnick = f"{user.first_name} Anim.{pack}"
             cmd = '/newanimated'
 
         response = urllib.request.urlopen(
@@ -123,13 +121,12 @@ async def kang(args):
                 x = await conv.get_response()
                 while "120" in x.text:
                     pack += 1
-                    packname = f"a{user.id}_by_{user.username}_{pack}"
-                    packnick = f"@{user.username}'s kang pack Vol.{pack}"
-                    await args.edit("`Switching to Pack " + str(pack) +
-                                    " due to insufficient space`")
+                    packname = f"a{user.id}_{user.username}_{pack}"
+                    packnick = f"{user.first_name} Pt.{pack}"
+                    await args.edit("Creating new branch: " + str(pack))
                     await conv.send_message(packname)
                     x = await conv.get_response()
-                    if x.text == "Invalid pack selected.":
+                    if x.text == "Invalid branch selected.":
                         await conv.send_message(cmd)
                         await conv.get_response()
                         # Ensure user doesn't get spamming notifications
@@ -166,10 +163,11 @@ async def kang(args):
                         await conv.get_response()
                         # Ensure user doesn't get spamming notifications
                         await bot.send_read_acknowledge(conv.chat_id)
-                        await args.edit(f"`Sticker added in a Different Pack !\
-                            \nThis Pack is Newly created!\
-                            \nYour pack can be found [here](t.me/addstickers/{packname})",
+                        await args.edit(f"`Build finished on new branch` !\
+                            \n**Changelogs:** [here](t.me/addstickers/{packname})",
                                         parse_mode='md')
+                        await asyncio.sleep(5)
+                        await args.delete()
                         return
                 if is_anim:
                     await conv.send_file('AnimatedSticker.tgs')
@@ -180,7 +178,7 @@ async def kang(args):
                 rsp = await conv.get_response()
                 if "Sorry, the file type is invalid." in rsp.text:
                     await args.edit(
-                        "`Failed to add sticker, use` @Stickers `bot to add the sticker manually.`"
+                        "Build throw an error, check the logs at @Stickers."
                     )
                     return
                 await conv.send_message(emoji)
@@ -192,7 +190,7 @@ async def kang(args):
                 # Ensure user doesn't get spamming notifications
                 await bot.send_read_acknowledge(conv.chat_id)
         else:
-            await args.edit("`Brewing a new Pack...`")
+            await args.edit("`Creating new branch...`")
             async with bot.conversation('Stickers') as conv:
                 await conv.send_message(cmd)
                 await conv.get_response()
@@ -211,7 +209,7 @@ async def kang(args):
                 rsp = await conv.get_response()
                 if "Sorry, the file type is invalid." in rsp.text:
                     await args.edit(
-                        "`Failed to add sticker, use` @Stickers `bot to add the sticker manually.`"
+                        "Build throw an error, check the logs at @Stickers."
                     )
                     return
                 await conv.send_message(emoji)
@@ -236,9 +234,11 @@ async def kang(args):
                 # Ensure user doesn't get spamming notifications
                 await bot.send_read_acknowledge(conv.chat_id)
 
-        await args.edit(f"`Sticker kanged successfully!`\
-            \nPack can be found [here](t.me/addstickers/{packname})",
+        await args.edit(f"`Build finished successfully!`\
+            \n**Changelogs:** [here](t.me/addstickers/{packname})",
                         parse_mode='md')
+        await asyncio.sleep(5)
+        await args.delete()
 
 
 async def resize_photo(photo):
@@ -299,12 +299,12 @@ async def get_pack_info(event):
         if document_sticker.emoticon not in pack_emojis:
             pack_emojis.append(document_sticker.emoticon)
 
-    OUTPUT = f"**Sticker Title:** `{get_stickerset.set.title}\n`" \
-        f"**Sticker Short Name:** `{get_stickerset.set.short_name}`\n" \
+    OUTPUT = f"**Title:** `{get_stickerset.set.title}\n`" \
+        f"**Short Name:** `{get_stickerset.set.short_name}`\n" \
         f"**Official:** `{get_stickerset.set.official}`\n" \
         f"**Archived:** `{get_stickerset.set.archived}`\n" \
-        f"**Stickers In Pack:** `{len(get_stickerset.packs)}`\n" \
-        f"**Emojis In Pack:**\n{' '.join(pack_emojis)}"
+        f"**Stickers:** `{len(get_stickerset.packs)}`\n" \
+        f"**Emojis:**\n{' '.join(pack_emojis)}"
 
     await event.edit(OUTPUT)
 
@@ -333,7 +333,7 @@ async def sticker_to_png(sticker):
 
 CMD_HELP.update({
     "stickers":
-    ".kang\
+    ".kang|curi|cury|colong|ambil\
 \nUsage: Reply .kang to a sticker or an image to kang it to your userbot pack.\
 \n\n.kang [emoji('s)]\
 \nUsage: Works just like .kang but uses the emoji('s) you picked.\
