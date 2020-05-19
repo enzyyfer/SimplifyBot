@@ -11,7 +11,7 @@
 Audio and video downloader using Youtube-dl
 .ytm To Download in mp3 format
 .ytf To Download in flac format
-.ytp To Download in mp4 format
+.ytv To Download in mp4 format
 """
 import logging
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
@@ -365,6 +365,6 @@ CMD_HELP.update({
     "\nUsage: Download in mp3 format."
     "\n\n.ytf <link>"
     "\nUsage: Download in flac format."
-    "\n\n.ytp <link>"
+    "\n\n.ytv <link>"
     "\nUsage: Download in mp4 format."
 })
