@@ -70,9 +70,13 @@ async def locks(event):
     else:
         if not input_str:
             await event.edit("`I can't lock nothing !!`")
+            await asyncio.sleep(3)
+            await event.delete()
             return
         else:
             await event.edit(f"`Invalid lock type:` {input_str}")
+            await asyncio.sleep(5)
+            await event.delete()
             return
 
     lock_rights = ChatBannedRights(
@@ -96,6 +100,8 @@ async def locks(event):
     except BaseException as e:
         await event.edit(
             f"`Do I have proper rights for that ??`\n**Error:** {str(e)}")
+        await asyncio.sleep(3)
+        await event.delete()
         return
 
 
@@ -158,9 +164,13 @@ async def rem_locks(event):
     else:
         if not input_str:
             await event.edit("`I can't unlock nothing !!`")
+            await asyncio.sleep(3)
+            await event.delete()
             return
         else:
             await event.edit(f"`Invalid unlock type:` {input_str}")
+            await asyncio.sleep(5)
+            await event.delete()
             return
 
     unlock_rights = ChatBannedRights(
@@ -184,6 +194,8 @@ async def rem_locks(event):
     except BaseException as e:
         await event.edit(
             f"`Do I have proper rights for that ??`\n**Error:** {str(e)}")
+        await asyncio.sleep(3)
+        await event.delete()
         return
 
 
