@@ -94,7 +94,7 @@ async def ANTI_SPAMBOTS(welcm):
                         pass
 
                     if data and data['ok']:
-                        reason = f"[Banned by Combot Anti Spam](https://combot.org/cas/query?u={check_user.id})"
+                        reason = f"Banned by [CAS](https://combot.org/cas/query?u={check_user.id})"
                         spambot = True
                     elif "t.cn/" in message.text:
                         reason = "Match on `t.cn` URLs"
@@ -114,7 +114,9 @@ async def ANTI_SPAMBOTS(welcm):
                     else:
                         if check_user.first_name in ("Bitmex", "Promotion",
                                                      "Information", "Dex",
-                                                     "Announcements", "Info"):
+                                                     "Announcements", "Info",
+                                                     "Legit", "Trade", "Forex",
+                                                     "Promo", "Airdrop"):
                             if users.last_name == "Bot":
                                 reason = "Known spambot"
                                 spambot = True
