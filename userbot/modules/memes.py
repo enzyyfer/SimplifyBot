@@ -660,34 +660,6 @@ async def kek(keks):
         await keks.edit(":" + uio[i % 2])
 
 
-@register(outgoing=True, pattern=r"^.coinflip (.*)")
-async def coin(event):
-    r = choice(["heads", "tails"])
-    input_str = event.pattern_match.group(1)
-    if input_str:
-        input_str = input_str.lower()
-    if r == "heads":
-        if input_str == "heads":
-            await event.edit(
-                "The coin landed on: **Heads**.\nYou were correct.")
-        elif input_str == "tails":
-            await event.edit(
-                "The coin landed on: **Heads**.\nYou weren't correct, try again ..."
-            )
-        else:
-            await event.edit("The coin landed on: **Heads**.")
-    elif r == "tails":
-        if input_str == "tails":
-            await event.edit(
-                "The coin landed on: **Tails**.\nYou were correct.")
-        elif input_str == "heads":
-            await event.edit(
-                "The coin landed on: **Tails**.\nYou weren't correct, try again ..."
-            )
-        else:
-            await event.edit("The coin landed on: **Tails**.")
-
-
 @register(pattern="^.slap(?: |$)(.*)", outgoing=True)
 async def who(event):
     """ slaps a user, or get slapped if not a reply. """
@@ -762,7 +734,7 @@ async def fun(e):
         await e.edit(t)
 
 
-@register(outgoing=True, pattern="^.cry$")
+@register(outgoing=True, pattern="^.(cry|nangis|sad)$")
 async def cry(e):
     """ nangis aja """
     await e.edit(choice(CRI))
@@ -892,12 +864,6 @@ async def zal(zgfy):
     await zgfy.edit("".join(reply_text))
 
 
-@register(outgoing=True, pattern="^.hi$")
-async def hoi(hello):
-    """ Greet everyone! """
-    await hello.edit(choice(HELLOSTR))
-
-
 @register(outgoing=True, pattern="^.owo(?: |$)(.*)")
 async def faces(owo):
     """ UwU """
@@ -994,7 +960,7 @@ async def pressf(f):
         await f.edit("`" + out + "`")
 
 
-@register(outgoing=True, pattern="^Oof$")
+@register(outgoing=True, pattern="^[Oo]of$")
 async def Oof(e):
     t = "Oof"
     for j in range(15):
@@ -1285,20 +1251,6 @@ async def taco(e):
         await e.edit("\n{\__/}"
                      "\n(●_●)"
                      "\n( >🌮 Want a taco?")
-
-
-@register(outgoing=True, pattern="^.sayhi$")
-async def sayhi(e):
-    await e.edit(
-        "\n💰💰💰💰💰💰💰💰💰💰💰💰"
-        "\n💰🔷💰💰💰🔷💰💰🔷🔷🔷💰"
-        "\n💰🔷💰💰💰🔷💰💰💰🔷💰💰"
-        "\n💰🔷💰💰💰🔷💰💰💰🔷💰💰"
-        "\n💰🔷🔷🔷🔷🔷💰💰💰🔷💰💰"
-        "\n💰🔷💰💰💰🔷💰💰💰🔷💰💰"
-        "\n💰🔷💰💰💰🔷💰💰💰🔷💰💰"
-        "\n💰🔷💰💰💰🔷💰💰🔷🔷🔷💰"
-        "\n💰💰💰💰💰💰💰💰💰💰💰💰")
        
                   
 @register(outgoing=True, pattern="^.gey$")            
@@ -1367,10 +1319,6 @@ CMD_HELP.update({
 \nUsage: kensar moon animation.\
 \n\n.clock\
 \nUsage: kensar clock animation.\
-\n\n.hi\
-\nUsage: Greet everyone!\
-\n\n.coinflip <heads/tails>\
-\nUsage: Flip a coin !!\
 \n\n.owo\
 \nUsage: UwU\
 \n\n.react\
