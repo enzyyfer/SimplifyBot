@@ -41,7 +41,7 @@ async def get_adzan(adzan):
     isya = result["items"][0]["isha"]
 
     textkirim = (f"⏱  **Jadwal Sholat Pada ** `{tanggal}` : \n" +
-                 f"`{lokasi} | {lokasi2} | {lokasi3} | {lokasi4}`\n\n" +
+                 f"`{lokasi3} | {lokasi4}`\n\n" +
                  f"**Subuh : ** `{subuh}`\n" +
                  f"**Syuruk : ** `{syuruk}`\n" +
                  f"**Zuhur : ** `{zuhur}`\n" +
