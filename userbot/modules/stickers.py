@@ -30,7 +30,7 @@ KANGING_STR = [
 ]
 
 
-@register(outgoing=True, pattern="^.kang|curi|cury|colong|ambil")
+@register(outgoing=True, pattern="^.(kang|curi|cury|colong|ambil)")
 async def kang(args):
     """ For .kang command, kangs stickers or creates new ones. """
     user = await bot.get_me()
