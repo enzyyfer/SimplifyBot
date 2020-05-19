@@ -809,7 +809,7 @@ async def get_users(show):
             await show.client.send_file(
                 BOTLOG_CHATID,
                 "userslist.txt",
-                caption= f"Users in {show.chat.title}(`{show.chat_id}`)"),
+                caption= f"Users in {show.chat.title}(`{show.chat_id}`)"
             )
         else:
             await show.edit(
