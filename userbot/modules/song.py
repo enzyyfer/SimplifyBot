@@ -32,15 +32,15 @@ async def _(event):
         return
     DELAY_BETWEEN_EDITS = 0.3
     PROCESS_RUN_TIME = 100
-    cmd = event.pattern_match.group(1)
+    cmd = event.pattern_match.group(2)
     reply_to_id = event.message.id
     if event.reply_to_msg_id:
         reply_to_id = event.reply_to_msg_id
-    await event.edit("searching song..please wait")
+    await event.edit("Searching song...")
     bruh(str(cmd))
     l = glob.glob("*.mp3")
     loa = l[0]
-    await event.edit("sending song")
+    await event.edit("Sending song")
     await bot.send_file(
                 event.chat_id,
                 loa,
@@ -49,6 +49,7 @@ async def _(event):
                 caption=cmd,
                 reply_to=reply_to_id
             )
+    await event.delete()
     os.system("rm -rf *.mp3")
     subprocess.check_output("rm -rf *.mp3",shell=True)
 
@@ -69,7 +70,7 @@ from userbot.events import register
 async def _(event):
     if event.fwd_from:
         return
-    link = event.pattern_match.group(1)
+    link = event.pattern_match.group(2)
     chat = "@SpotifyMusicDownloaderBot"
     await event.edit("```Getting Your Music```")
     async with bot.conversation(chat) as conv:
