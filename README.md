@@ -1,7 +1,7 @@
-# One4uBot userbot project
-[![Build](https://github.com/MoveAngel/One4uBot/workflows/FailedChecker/badge.svg?branch=sql-extended)](https://github.com/MoveAngel/One4uBot/actions "Build") [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e35faa6a680f4d66abdffddaad76e418)](https://app.codacy.com/manual/MoveAngel/One4uBot?utm_source=github.com&utm_medium=referral&utm_content=MoveAngel/One4uBot&utm_campaign=Badge_Grade_Dashboard) ![Last Commit](https://img.shields.io/github/last-commit/MoveAngel/One4uBot/sql-extended) ![Contributors](https://img.shields.io/github/contributors/MoveAngel/One4uBot?color=LightSlateGrey)
+# SimplifyBot project
+<p style="text-align: center;" align="center"><a href="https://github.com/rzlamrr/SimplifyBot/graphs/contributors"><img src="https://img.shields.io/github/contributors/rzlamrr/SimplifyBot?style=plastic" alt="contributors" </a>
+<a href="https://snyk.io/test/github/rzlamrr/SimplifyBot?targetFile=requirements.txt"><img src="https://snyk.io/test/github/rzlamrr/SimplifyBot/badge.svg?targetFile=requirements.txt" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/rzlamrr/SimplifyBot?targetFile=requirements.txt" style="max-width:100%;"></a></p>
 
-![logo](https://telegra.ph/file/6935648afa7edc00f1611.jpg)
 
 ```
 #include <std/disclaimer.h>
@@ -25,7 +25,7 @@ The easiest way to deploy this great bot! is click on button below
 Make sure you have an account of heroku and follow all the steps required.
 
 Deploy to Heroku:
-<p align="left"><a href="https://heroku.com/deploy?template=https://github.com/rzlamrr/One4uBot/tree/sql-extended"> <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" /></a></p>
+<p align="left"><a href="https://heroku.com/deploy?template=https://github.com/rzlamrr/SimplifyBot/tree/sql-extended"> <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy to Heroku" /></a></p>
 
 ## Groups and support
 
@@ -39,6 +39,7 @@ Thanks for all :
 * [RaphielGang](https://github.com/RaphielGang) - Telegram-Paperplane
 * [AvinashReddy3108](https://github.com/AvinashReddy3108) - PaperplaneExtended
 * [kandnub](https://github.com/kandnub) - TG-UserBot
+* [DevPatel](https://github.com//MoveAngel) - One4uBot
 * [AdekMaulana](https://github.com/adekmaulana) - ProjectBish
 * [Mr.Miss](https://github.com/keselekpermen69) - Userbutt
 * [Mkaraniya](https://github.com/mkaraniya) - OpenUserBot
