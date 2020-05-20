@@ -1,4 +1,8 @@
 # SimplifyBot project
+<p style="text-align: center;" align="center"><a href="https://github.com/rzlamrr/SimplifyBot/graphs/contributors"><img src="https://img.shields.io/github/contributors/rzlamrr/SimplifyBot?style=plastic" alt="contributors" </a>
+<a href="https://snyk.io/test/github/rzlamrr/SimplifyBot?targetFile=requirements.txt"><img src="https://snyk.io/test/github/rzlamrr/SimplifyBot/badge.svg?targetFile=requirements.txt" alt="Known Vulnerabilities" data-canonical-src="https://snyk.io/test/github/rzlamrr/SimplifyBot?targetFile=requirements.txt" style="max-width:100%;"></a></p>
+
+>>>>>>> e53d5b990caed7d6fb5edef36e06a4f9191dcfbd
 
 ```
 #include <std/disclaimer.h>
